@@ -20,6 +20,11 @@ export function ImageGallery() {
     setImages((current) => [...current, image]);
   }
 
+  async function handleDelete(id: string) {
+    await api.deleteImage(id);
+    setImages((current) => current.filter((image) => image.id !== id));
+  }
+
   return (
     <div>
       <input
@@ -42,7 +47,17 @@ export function ImageGallery() {
       <ul className="mt-8 flex flex-col gap-8">
         {images.map((image) => (
           <li key={image.id}>
-            <img src={image.url} alt={image.name} width={200} />
+            <div className="relative w-fit">
+              <img src={image.url} alt={image.name} width={200} />
+              <button
+                type="button"
+                onClick={() => handleDelete(image.id)}
+                aria-label={`Delete ${image.name}`}
+                className="absolute top-2 right-2 rounded-md bg-background/80 px-2 py-1 text-xs font-medium text-headline transition-colors hover:bg-button focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-highlight"
+              >
+                Delete
+              </button>
+            </div>
             <p className="mt-2">{image.name}</p>
           </li>
         ))}

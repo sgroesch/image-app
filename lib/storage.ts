@@ -13,7 +13,7 @@ const globalStore = globalThis as typeof globalThis & {
 const store: Map<string, StoredImage> = (globalStore.__imageStore ??= new Map());
 
 function toPublic(image: StoredImage): ImageMeta {
-  return { id: image.id, name: image.name, url: `/api/images/${image.id}/file` };
+  return { id: image.id, name: image.name, url: `/api/images/${image.id}` };
 }
 
 export async function saveImage(input: {
@@ -32,4 +32,8 @@ export async function listImages(): Promise<ImageMeta[]> {
 
 export async function getImageFile(id: string): Promise<StoredImage | null> {
   return store.get(id) ?? null;
+}
+
+export async function deleteImage(id: string): Promise<void> {
+  store.delete(id);
 }

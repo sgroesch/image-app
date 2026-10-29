@@ -12,3 +12,7 @@ export async function uploadImage(file: File): Promise<ImageMeta> {
   const res = await fetch("/api/images", { method: "POST", body });
   return (await res.json()) as ImageMeta;
 }
+
+export async function deleteImage(id: string): Promise<void> {
+  await fetch(`/api/images/${encodeURIComponent(id)}`, { method: "DELETE" });
+}
