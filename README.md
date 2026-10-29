@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
 ## Getting Started
-
-First, run the development server:
-
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+# then
+npm start
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Approximate Time
+~3.5 hours over one day
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## API Endpoints
+- GET `/api/images` to get all images 
+- GET `/api/images?q=test` to get all images whose file name have the search text (test in this example)
+- POST `/api/images` to upload a single image
+- GET `/api/images/[id]` to get single image using the id
+- DELETE `/api/images/[id]` to delete single image using the id
 
-## Learn More
+## Decisions
+- Using in memory storage for ease of setup and teardown and to avoid issues with old files when changing the image schema. The issue from this is that the images do not survive a server restart
+- Routing structure uses Next.js's built in folder structure for the routes. Not as pretty or as easy to search for files but works out of the box with no extra set up
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Next steps
+- Add error handling for images failing to upload or be deleted, including messages to the user
+- Add real image verifying, currently only using the input field's validation. Could add actual type and size checks in the browser
+- Add confirmation screen for deleting images
+- Add display name and description field that can be added to the images and updated after upload
+- Better storage using S3 (or similar) for the image and a database for the details
+- Full size view of the image in a modal on click
+- Thumbnails for the images in the grid view
+- Adding testing for the different functionality
