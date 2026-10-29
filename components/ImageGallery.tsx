@@ -55,7 +55,7 @@ export function ImageGallery() {
         <button
           type="button"
           onClick={() => inputRef.current?.click()}
-          className="inline-flex h-10 items-center gap-2 rounded-lg bg-button px-4 text-sm font-medium text-button-text transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-highlight"
+          className="inline-flex h-10 items-center gap-2 rounded-lg bg-button px-4 text-sm font-medium text-button-text cursor-pointer transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-highlight"
         >
           <svg aria-hidden="true" viewBox="0 0 20 20" fill="currentColor" className="size-4">
             <path d="M10 3a1 1 0 0 1 .7.3l4 4a1 1 0 1 1-1.4 1.4L11 6.42V13a1 1 0 1 1-2 0V6.41L6.7 8.7a1 1 0 0 1-1.4-1.4l4-4A1 1 0 0 1 10 3ZM4 15a1 1 0 0 1 1 1v.5h10V16a1 1 0 1 1 2 0v1.5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V16a1 1 0 0 1 1-1Z" />
@@ -76,7 +76,7 @@ export function ImageGallery() {
                 type="button"
                 onClick={() => handleDelete(image.id)}
                 aria-label={`Delete ${image.name}`}
-                className="absolute top-2 right-2 rounded-md bg-background/80 px-2 py-1 text-xs font-medium text-headline transition-colors hover:bg-button focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-highlight"
+                className="absolute top-2 right-2 rounded-md bg-background/80 px-2 py-1 text-xs font-medium text-headline transition-colors cursor-pointer hover:bg-button focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-highlight"
               >
                 Delete
               </button>
