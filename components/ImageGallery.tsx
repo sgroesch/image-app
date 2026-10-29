@@ -50,7 +50,7 @@ export function ImageGallery() {
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search images"
           aria-label="Search images"
-          className="h-10 w-full max-w-sm rounded-lg border border-secondary bg-transparent px-3 text-sm text-headline placeholder:text-paragraph focus-visible:border-highlight focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-highlight"
+          className="h-10 w-full max-w-sm rounded-lg border border-secondary bg-transparent px-3 text-sm text-headline placeholder:text-paragraph focus-visible:border-highlight focus-visible:outline-2 focus-visible:outline-highlight"
         />
         <button
           type="button"
@@ -63,11 +63,15 @@ export function ImageGallery() {
           Upload
         </button>
       </div>
-      <ul className="mt-8 flex flex-col gap-8">
+      <ul className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {images.map((image) => (
           <li key={image.id}>
-            <div className="relative w-fit">
-              <img src={image.url} alt={image.name} width={200} />
+            <div className="relative">
+              <img
+                src={image.url}
+                alt={image.name}
+                className="aspect-[4/3] w-full rounded-lg object-cover"
+              />
               <button
                 type="button"
                 onClick={() => handleDelete(image.id)}
