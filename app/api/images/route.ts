@@ -1,7 +1,9 @@
+import type { NextRequest } from "next/server";
 import { listImages, saveImage } from "@/lib/storage";
 
-export async function GET() {
-  const images = await listImages();
+export async function GET(request: NextRequest) {
+  const query = request.nextUrl.searchParams.get("q") ?? "";
+  const images = await listImages(query);
   return Response.json({ images });
 }
 

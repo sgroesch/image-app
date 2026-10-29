@@ -26,8 +26,11 @@ export async function saveImage(input: {
   return toPublic(image);
 }
 
-export async function listImages(): Promise<ImageMeta[]> {
-  return [...store.values()].map(toPublic);
+export async function listImages(query = ""): Promise<ImageMeta[]> {
+  const q = query.trim().toLowerCase();
+  return [...store.values()]
+    .filter((image) => image.name.toLowerCase().includes(q))
+    .map(toPublic);
 }
 
 export async function getImageFile(id: string): Promise<StoredImage | null> {

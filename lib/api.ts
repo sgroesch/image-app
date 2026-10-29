@@ -1,7 +1,8 @@
 import type { ImageMeta } from "./types";
 
-export async function listImages(): Promise<ImageMeta[]> {
-  const res = await fetch("/api/images", { cache: "no-store" });
+export async function listImages(query = ""): Promise<ImageMeta[]> {
+  const params = new URLSearchParams({ q: query });
+  const res = await fetch(`/api/images?${params}`, { cache: "no-store" });
   const body = (await res.json()) as { images: ImageMeta[] };
   return body.images;
 }
